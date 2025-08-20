@@ -1,0 +1,37 @@
+{
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "jsxImportSource": "@lynx-js/react",
+
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "strict": true,
+    "isolatedModules": true,
+    "verbatimModuleSyntax": true,
+
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "baseUrl": "./src",
+    "paths": {
+      "@assets": ["assets"],
+      "@assets/*": ["assets/*"],
+      "@components": ["components"],
+      "@components/*": ["components/*"],
+      "@context": ["context"],
+      "@context/*": ["context/*"],
+      "@features": ["features"],
+      "@features/*": ["features/*"],
+      "@hooks": ["hooks"],
+      "@hooks/*": ["hooks/*"],
+      "@navigation": ["navigation"],
+      "@navigation/*": ["navigation/*"],
+      "@store": ["store"],
+      "@theme": ["theme"],
+      "@theme/*": ["theme/*"],
+      "@utils": ["utils"],
+      "@utils/*": ["utils/*"]
+    }
+  },
+  "exclude": ["dist/"]
+}
