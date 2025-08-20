@@ -4,28 +4,37 @@ import { pokemonRequestKeys } from '@utils/query-keys.config'
 import { gql } from 'graphql-request'
 
 const GET_POKEMONS = gql`
-  query samplePokeAPIquery($limit: Int = 10, $offset: Int = 0) {
-    pokemon(limit: $limit, offset: $offset) {
-      id
-      name
-      weight
-      height,
+  query GET_POKEMONS($limit: Int = 10, $offset: Int = 0) {
+     pokemons(limit: $limit, offset: $offset) {
+      results {
+        id
+        name
+        image
+      }
     }
   }
+
 `
 
-type Pokemon = {
+export interface Data {
+  pokemons: Pokemons
+}
+
+export interface Pokemons {
+  results: Result[]
+}
+
+export interface Result {
   id: number
   name: string
-  height: number
-  weight: number
+  image: string
 }
 
 export const useQueryPokemons = (limit = 10, offset = 0) => {
   const { data, error } = useSuspenseQuery({
     queryKey: pokemonRequestKeys.all(),
     queryFn: () =>
-      graphqlClient.request<{ pokemon: Pokemon[] }>(GET_POKEMONS, {
+      graphqlClient.request<Data>(GET_POKEMONS, {
         limit,
         offset
       })

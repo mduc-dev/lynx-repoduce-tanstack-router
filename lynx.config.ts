@@ -2,6 +2,8 @@ import { createRequire } from 'node:module'
 import { pluginQRCode } from '@lynx-js/qrcode-rsbuild-plugin'
 import { pluginReactLynx } from '@lynx-js/react-rsbuild-plugin'
 import { defineConfig } from '@lynx-js/rspeedy'
+import { pluginImageCompress } from '@rsbuild/plugin-image-compress'
+import { pluginSass } from '@rsbuild/plugin-sass'
 import { pluginTypeCheck } from '@rsbuild/plugin-type-check'
 import { tanstackRouter } from '@tanstack/router-plugin/rspack'
 import { pluginTailwindCSS } from 'rsbuild-plugin-tailwindcss'
@@ -18,6 +20,8 @@ export default defineConfig({
     }),
     pluginReactLynx(),
     pluginTypeCheck(),
+    pluginSass(),
+    pluginImageCompress(),
     pluginTailwindCSS({
       config: 'tailwind.config.ts',
       exclude: [/[\\/]node_modules[\\/]/]
