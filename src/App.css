@@ -2,6 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  src: url("./assets/fonts/Poppins-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 700;
+  src: url("./assets/fonts/Poppins-Bold.ttf") format("truetype");
+}
+
 :root {
   --radius: 8px;
   --color-base-1: rgba(0, 0, 0, 1);
@@ -20,4 +34,5 @@
   --color-border: rgba(64, 64, 64, 1);
   --color-ring: rgba(61, 234, 231, 1);
   --color-field: rgba(64, 64, 64, 1);
+  --font-poppins: "Poppins", sans-serif;
 }

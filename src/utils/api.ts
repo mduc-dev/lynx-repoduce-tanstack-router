@@ -58,7 +58,7 @@ const api = async <T>({
   //   ...rest
   // }
   const request = {
-    baseURL: 'https://pokeapi.co/api/v2/',
+    baseURL: 'https://graphql.pokeapi.co/v1beta2',
     url,
     method,
     data,

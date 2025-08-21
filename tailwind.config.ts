@@ -1,9 +1,9 @@
 import preset from '@lynx-js/tailwind-preset'
-
 import type { Config } from 'tailwindcss'
+import defaultTheme from 'tailwindcss/defaultTheme'
 
 export default {
-  content: [],
+  content: ['./src/**/*.{js,ts,jsx,tsx}'],
   presets: [preset],
   theme: {
     extend: {
@@ -39,6 +39,9 @@ export default {
         outline: 'var(--color-ring)',
         field: 'var(--color-field)',
         input: 'var(--color-field)'
+      },
+      fontFamily: {
+        poppins: ['var(--font-poppins)', ...defaultTheme.fontFamily.sans]
       },
       keyframes: {
         'fade-in': {

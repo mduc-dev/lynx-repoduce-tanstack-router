@@ -3,6 +3,7 @@ import 'url-search-params-polyfill'
 import { root } from '@lynx-js/react'
 import '@lynx-js/react/debug'
 import { App } from 'App'
+
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
 const queryClient = new QueryClient({

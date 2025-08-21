@@ -1,7 +1,15 @@
-.container {
+@mixin page {
+  display: flex;
+  flex-direction: column;
   width: 100%;
   height: 100%;
-  margin-top: 64;
+  justify-content: flex-start;
+  padding-top: 64px;
+}
+
+.page {
+  @include page;
+  background: #f0f2f5;
 }
 
 .header {
@@ -95,4 +103,63 @@
   margin-left: 5px;
   color: white;
   font-weight: bold;
+}
+
+.card {
+  position: relative;
+  width: 120px;
+  height: 160px;
+  background: linear-gradient(120deg, #1a1a2e, #16213e);
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  /* transform-style: preserve-3d; */
+  transition: transform 0.3s ease;
+}
+.card-inner {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: url("https://cdn2.bulbagarden.net/upload/1/17/Cardback.jpg")
+    no-repeat center;
+  background-size: cover;
+  /* backface-visibility: hidden; */
+}
+.card:hover {
+  transform: rotateY(10deg) rotateX(10deg);
+}
+.holo-effect {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    rgba(255, 255, 255, 0.1),
+    rgba(0, 191, 255, 0.3)
+  );
+  /* mix-blend-mode: color-dodge; */
+  animation: shine 3s infinite;
+}
+@keyframes shine {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+.card-content {
+  position: relative;
+  z-index: 1;
+  padding: 4px;
+  color: white;
+  text-align: center;
+}
+.card-content img {
+  width: 100%;
+  height: auto;
+  max-height: 90px;
+  /* object-fit: contain; */
 }
