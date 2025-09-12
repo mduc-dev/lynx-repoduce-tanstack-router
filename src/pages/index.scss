@@ -61,50 +61,6 @@
   list-cross-axis-gap: 10px;
 }
 
-.movie-card {
-  border-radius: 10px;
-  overflow: hidden;
-  background-color: #001d66;
-  height: 210px;
-  width: 100%;
-  border-width: 2px;
-  position: relative;
-}
-
-.poster-image {
-  width: 100%;
-  aspect-ratio: 1 / 1.5;
-}
-
-.score-container {
-  display: flex;
-  position: absolute;
-  top: 0;
-  font-size: 14px;
-}
-
-.score-badge {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  padding: 5px;
-  margin: 5px;
-  background-color: rgba(0, 0, 0, 0.3);
-  overflow: hidden;
-  border-radius: 12px;
-}
-
-.score-spacer {
-  height: 10px;
-  flex-direction: row;
-}
-
-.score-value {
-  margin-left: 5px;
-  color: white;
-  font-weight: bold;
-}
-
 .card {
   position: relative;
   width: 120px;

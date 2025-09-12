@@ -1,10 +1,20 @@
 import PokeBall from '@assets/poke-ball.png?inline'
 import { useQueryPokemons } from '@hooks/useQueryPokemons'
+import { useState } from 'react'
 import { useNavigate } from 'react-router'
 import './index.scss'
+import RegionCard from '@components/region-card'
+
 export default function Pokemons() {
   const nav = useNavigate()
   const { data } = useQueryPokemons()
+  const [isFront, setIsFront] = useState(true)
+  const [isFirstRender, setIsFirstRender] = useState(true)
+
+  const handleCardSelect = () => {
+  
+    setIsFront((prev) => !prev)
+  }
 
   return (
     <view className='page'>
@@ -27,7 +37,7 @@ export default function Pokemons() {
       <list
         className='list-wrapper'
         scroll-orientation='vertical'
-        span-count={3}
+        span-count={2}
         list-type='flow'
         preload-buffer-count={10}
         experimental-max-fling-distance-ratio='auto'
@@ -39,16 +49,16 @@ export default function Pokemons() {
               key={`list-item-${item.id}`}
               estimated-main-axis-size-px={200} // add estimated size
             >
-              <PokemonCard
-                id={item.id}
+              <RegionCard
+                isFront={isFront}
+                isFirstRender={isFirstRender}
                 name={item.name}
-                // image={item.artwork}
-                onPress={() =>
-                  nav(`/pokemons/${item.id}`, {
-                    state: { data: item.pokedexes, regionTitle: item.name }
-                  })
-                }
-                types={['fire', 'bug']}
+                onPress={handleCardSelect}
+                // onPress={() =>
+                //   nav(`/pokemons/${item.id}`, {
+                //     state: { data: item.pokedexes, regionTitle: item.name }
+                //   })
+                // }
               />
             </list-item>
           )
@@ -57,58 +67,57 @@ export default function Pokemons() {
     </view>
   )
 }
-const typeColors: Record<string, string> = {
-  grass: '#E6F4EA',
-  fire: '#FDECEA',
-  water: '#E8F1FD',
-  bug: '#F5F6E6',
-  poison: '#F3E6F6',
-  normal: '#F5F5F5',
-  electric: '#FFF9E6',
-  ground: '#F6EFE6',
-  fairy: '#FDEEF7',
-  fighting: '#FBEAE6',
-  psychic: '#FDE6F3',
-  rock: '#F2EEE6',
-  ghost: '#EDE6F6',
-  ice: '#E6F7FD',
-  dragon: '#E6ECFD'
-}
+// const legendaryRegions: Record<string, string> = {
+//   kanto: MewTwo,
+//   johto: Hooh,
+//   hoenn: Kyogre,
+//   sinnoh: Dialga,
+//   unova: Reshiram,
+//   kalos: Xerneas,
+//   alola: Solgaleo,
+//   galar: Zacian,
+//   hisui: Arcues,
+//   paldea: Miraidon
+// }
 
-interface PokemonCardProps {
-  id: number
-  name: string
-  image?: string
-  types: string[]
-  onPress: () => void
-}
+// const regionDescriptions: Record<string, string> = {
+//   kanto: 'Legendary Pokemon; home of the original 151.',
+//   johto: 'A region of myths, towers, and the second generation of Pokemon.',
+//   hoenn: 'A region of nature, contests, and the third generation of Pokemon.',
+//   sinnoh:
+//     'A region of ancient myths, exploration, and the fourth generation of Pokemon.',
+//   unova: 'A region of ideas, the sky, and the fifth generation of Pokemon.',
+//   kalos: 'A region of beauty, history, and the sixth generation of Pokemon.',
+//   alola: 'A region of tropical islands and the seventh generation of Pokemon.',
+//   galar: 'A region of history, sports, and the eighth generation of Pokemon.',
+//   hisui: 'A region of ancient legends and the ninth generation of Pokemon.',
+//   paldea: 'A vibrant land of adventure and the newest generation of Pokemon.'
+// }
 
-const PokemonCard = ({ id, name, image, types, onPress }: PokemonCardProps) => {
-  const bgColor = typeColors[types[0]] ?? '#FFFFFF'
-  return (
-    <view
-      bindtap={onPress}
-      className='p-3 m-2.5 rounded-xl shadow-md flex-col justify-between items-center'
-      style={{ backgroundColor: bgColor }}
-    >
-      {/* ID */}
-      <text className='text-xs text-gray-500 mb-1'>
-        #{id.toString().padStart(3, '0')}
-      </text>
+// interface RegionProps {
+//   id?: number
+//   name: string
+//   image?: string
+//   types?: string[]
+//   onPress: () => void
+// }
 
-      {/* Name */}
-      <text
-        className='text-base capitalize text-gray-900 mb-1'
-        style={{ fontFamily: 'Poppins' }}
-      >
-        {name}
-      </text>
+// const RegionCard = ({ name, onPress }: RegionProps) => {
+//   const [flipped, setFlipped] = useState(false)
+//   const imageLegendary = legendaryRegions[name]
+//   const description = regionDescriptions[name] ?? ''
 
-      {/* Types */}
-      <text className='text-xs text-gray-600 mb-2'>{types.join(', ')}</text>
-
-      {/* Image */}
-      {/*<image src={image} className='size-28 object-contain' />*/}
-    </view>
-  )
-}
+//   return (
+//     <view className='region-card' bindtap={() => setFlipped((prev) => !prev)}>
+//       {flipped ? (
+//         <view className='card-back back-enter' />
+//       ) : (
+//         <view className='card-front front-enter'>
+//           <image src={imageLegendary} className='legendary-img' auto-size />
+//           <text className='region-title'>{name}</text>
+//           <text className='region-desc'>{description}</text>
+//         </view>
+//       )}
+//     </view>
+//   )
+// }
