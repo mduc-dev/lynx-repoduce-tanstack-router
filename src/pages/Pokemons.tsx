@@ -1,12 +1,12 @@
 import PokeBall from '@assets/poke-ball.png?inline'
 import { useQueryPokemons } from '@hooks/useQueryPokemons'
 import { useState } from 'react'
-import { useNavigate } from 'react-router'
+// import { useNavigate } from 'react-router'
 import './index.scss'
 import RegionCard from '@components/region-card'
 
 export default function Pokemons() {
-  const nav = useNavigate()
+  // const nav = useNavigate()
   const { data } = useQueryPokemons()
   const [isFront, setIsFront] = useState(true)
   const [isFirstRender, setIsFirstRender] = useState(true)

@@ -1,14 +1,13 @@
-import { createRootRoute, Outlet } from '@tanstack/react-router'
+import { createRootRoute } from '@tanstack/react-router'
+import Pokemons from 'pages/Pokemons'
+import { Suspense } from 'react'
 
 export const Route = createRootRoute({
-  component: RootComponent
+  component: () => {
+    return (
+      <Suspense fallback={<text>Loading...</text>}>
+        <Pokemons />
+      </Suspense>
+    )
+  }
 })
-
-function RootComponent() {
-  return (
-    <view>
-      <view style={{ height: '10vh', backgroundColor: 'red' }} />
-      <Outlet />
-    </view>
-  )
-}
